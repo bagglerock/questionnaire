@@ -6,11 +6,25 @@ import qa from "./qa.json";
 
 import "./App.css";
 
-console.log(qa);
-
 class App extends Component {
 
+  state = {
+    qa: qa,
+    questionNumber: 1,
+    answers: []
+
+  }
+
+  incrementQuestion = () => {
+    this.state.questionNumber++;
+  }
+
   render() {
+    console.log(this.state.qa);
+    this.incrementQuestion();
+    console.log(this.state.questionNumber);
+    console.log(this.state.answers);
+
     return (
       <div className="App">
         <Title/>
