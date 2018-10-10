@@ -3,19 +3,19 @@
       "question": "What is 1?",
       "answers": [
         {
-            "a1": "answer 1",
+            "a": "question 1, answer 1",
             "score": 1
         },
         {
-            "a2": "answer 1",
+            "a": "question 1, answer 2",
             "score": 2
         },
         {
-            "a3": "answer 1",
+            "a": "question 1, answer 3",
             "score": 3
         },
         {
-            "a4": "answer 1",
+            "a": "question 1, answer 4",
             "score": 4
         }
       ]
@@ -24,19 +24,19 @@
         "question": "What is 2?",
         "answers": [
           {
-              "a1": "answer 1",
+              "a": "question 2, answer 1",
               "score": 1
           },
           {
-              "a2": "answer 1",
+              "a": "question 2, answer 2",
               "score": 2
           },
           {
-              "a3": "answer 1",
+              "a": "question 2, answer 3",
               "score": 3
           },
           {
-              "a4": "answer 1",
+              "a": "question 2, answer 4",
               "score": 4
           }
         ]
@@ -45,40 +45,40 @@
         "question": "What is 3?",
         "answers": [
           {
-              "a1": "answer 1",
+              "a": "question 3, answer 1",
               "score": 1
           },
           {
-              "a2": "answer 1",
+              "a": "question 3, answer 2",
               "score": 2
           },
           {
-              "a3": "answer 1",
+              "a": "question 3, answer 3",
               "score": 3
           },
           {
-              "a4": "answer 1",
+              "a": "question 3, answer 4",
               "score": 4
           }
         ]
       },
       {
-        "question": "What is 4git a?",
+        "question": "What is 4?",
         "answers": [
           {
-              "a1": "answer 1",
+              "a": "question 4, answer 1",
               "score": 1
           },
           {
-              "a2": "answer 1",
+              "a": "question 4, answer 2",
               "score": 2
           },
           {
-              "a3": "answer 1",
+              "a": "question 4, answer 3",
               "score": 3
           },
           {
-              "a4": "answer 1",
+              "a": "question 4, answer 4",
               "score": 4
           }
         ]

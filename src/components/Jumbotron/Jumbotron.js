@@ -1,22 +1,34 @@
 import React from "react";
-import { Button } from  "../Button";
+import { Button } from "../Button";
 
 export const Jumbotron = props => {
 
-    return (
+  return (
+    <div className="jumbotron">
+      <div className="navigator">
+        <Button 
+            action={props.incrementNumber}
+        >Next
+        </Button>
+        <Button 
+            action={props.decrementNumber}
+        >Prev
+        </Button>
+      </div>
+      <div className="body">
+        <h1 className="display-4">Question {props.questionNumber}</h1>
+        <p className="lead">{props.question.question}</p>
+        <hr className="my-4" />
 
-        <div className="jumbotron">
-            <h1 className="display-4">Question X</h1>
-            <p className="lead">What is this question going to be?</p>
-            <hr className="my-4"/>
-            <Button
-                action={props.incrementNumber}
-            >
-            Button 1
-            </Button>
-            <Button
-                action={props.decrementNumber}
-            >Button 2</Button>
-        </div>
-    )
-}
+        {props.question.answers.map((answer, i) => (
+          <Button 
+            key={i} 
+            action={props.choose}
+          >{answer.a}
+          </Button>
+        ))}
+
+      </div>
+    </div>
+  );
+};

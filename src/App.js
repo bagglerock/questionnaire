@@ -10,38 +10,50 @@ class App extends Component {
 
   state = {
     qa: qa,
-    questionNumber: 0,
-    answers: []
+    questionIndex: 0,
+    answers: [],
+    score: 0
 
   }
 
+  // for the increment and decrememnt check to see the length of the array of questions and limit the functionality of this function to just within the range of the number of questions
+
   incrementNumber = () => {
-    const questionNumber = this.state.questionNumber + 1;
-    this.setState({ questionNumber });
-    console.log("increment");
+    if (this.state.questionIndex < this.state.qa.length - 1){
+      const questionIndex = this.state.questionIndex + 1;
+      this.setState({ questionIndex });
+    } else {
+      console.log("you are at the last question.");
+    }
     
   }
 
   decrementNumber = () => {
-    const questionNumber = this.state.questionNumber - 1;
-    this.setState({ questionNumber });
-    console.log("decrement");
+    if(this.state.questionIndex > 0){
+      const questionIndex = this.state.questionIndex - 1;
+      this.setState({ questionIndex });
+    } else {
+      console.log("you are at the first question.")
+    }
     
+    
+  }
+
+  handleAnswer = (e) => {
+    console.log(e);
   }
   
   render() {
-    //console.log(this.state.qa[0].question);
-    //this.incrementQuestion();
-    console.log(this.state.questionNumber);
-    // console.log(this.state.answers);
 
     return (
       <div className="App">
         <Title/>
         <Jumbotron
-          question={this.state.qa[this.state.questionNumber]}
+          question={this.state.qa[this.state.questionIndex]}
+          questionNumber={this.state.questionIndex + 1}
           incrementNumber={this.incrementNumber}
           decrementNumber={this.decrementNumber}
+          choose={this.handleAnswer}
         />
       </div>
     );
