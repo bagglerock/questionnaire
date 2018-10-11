@@ -2,9 +2,7 @@ import React from "react";
 
 export const Button = props => {
 
-    console.log(props);
-
-    function handleClick() {
+    function _handleClick() {
         props.action(props.index)
     }
 
@@ -13,7 +11,7 @@ export const Button = props => {
             <button 
                 type="button" 
                 className="btn btn-secondary"
-                onClick={handleClick}
+                onClick={_handleClick}
             >
             {props.children}
             </button>

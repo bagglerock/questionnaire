@@ -2,7 +2,7 @@ import React from "react";
 
 export const Arrow = (props) => {
 
-    const action = () => {
+    const _action = () => {
         props.action();
         
     } 
@@ -10,7 +10,7 @@ export const Arrow = (props) => {
     return (
         <div>
             <h1
-                onClick={action}
+                onClick={_action}
             >
                 {props.direction === "right" ? ">" : "<"}
             </h1>
