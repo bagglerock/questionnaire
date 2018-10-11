@@ -26,7 +26,7 @@ export const Jumbotron = props => {
             key={i} 
             action={props.chooseAnswer}
             index={i}
-          >{answer.a}
+          >{answer.choice}
           </Button>
         ))}
 
