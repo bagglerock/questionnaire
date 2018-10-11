@@ -1,4 +1,5 @@
 import React from "react";
+import { Arrow } from "../Arrow";
 import { Button } from "../Button";
 
 export const Jumbotron = props => {
@@ -6,14 +7,14 @@ export const Jumbotron = props => {
   return (
     <div className="jumbotron">
       <div className="navigator">
-        <Button 
-            action={props.incrementNumber}
-        >Next
-        </Button>
-        <Button 
+        <Arrow 
+            direction="left"
             action={props.decrementNumber}
-        >Prev
-        </Button>
+        />
+        <Arrow 
+            direction="right"
+            action={props.incrementNumber}
+        />
       </div>
       <div className="body">
         <h1 className="display-4">Question {props.questionNumber}</h1>
