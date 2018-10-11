@@ -24,7 +24,8 @@ export const Jumbotron = props => {
         {props.question.answers.map((answer, i) => (
           <Button 
             key={i} 
-            action={props.choose}
+            action={props.chooseAnswer}
+            index={i}
           >{answer.a}
           </Button>
         ))}

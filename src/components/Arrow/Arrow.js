@@ -2,8 +2,7 @@ import React from "react";
 
 export const Arrow = (props) => {
 
-    const action = (e) => {
-        e.preventDefault();
+    const action = () => {
         props.action();
         
     } 

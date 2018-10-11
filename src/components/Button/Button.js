@@ -1,17 +1,19 @@
 import React from "react";
 
-function handleClick(e, props) {
-    e.preventDefault();
-    props.action(props.parameter)
-}
-
 export const Button = props => {
+
+    console.log(props);
+
+    function handleClick() {
+        props.action(props.index)
+    }
+
     return (
         <div>
             <button 
                 type="button" 
                 className="btn btn-secondary"
-                onClick={(e) => handleClick(e, props)}
+                onClick={handleClick}
             >
             {props.children}
             </button>

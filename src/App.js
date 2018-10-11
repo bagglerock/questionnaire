@@ -39,8 +39,8 @@ class App extends Component {
     
   }
 
-  handleAnswer = (e) => {
-    console.log(e);
+  chooseAnswer = (index) => {
+    console.log(index);
   }
   
   render() {
@@ -53,7 +53,7 @@ class App extends Component {
           questionNumber={this.state.questionIndex + 1}
           incrementNumber={this.incrementNumber}
           decrementNumber={this.decrementNumber}
-          choose={this.handleAnswer}
+          chooseAnswer={this.chooseAnswer}
         />
       </div>
     );
