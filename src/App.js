@@ -39,8 +39,10 @@ class App extends Component {
     
   }
 
-  chooseAnswer = (index) => {
-    console.log(index);
+  chooseAnswer = (answerIndex) => {
+    console.log(answerIndex);
+    this.state.answers.splice(this.state.questionIndex, 1, answerIndex);
+    console.log(this.state.answers);
   }
   
   render() {
