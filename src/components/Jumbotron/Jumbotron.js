@@ -5,8 +5,8 @@ import { Button } from "../Button";
 export const Jumbotron = props => {
 
   return (
-    <div className="jumbotron">
-      <div className="container">
+    <div className="jumbotron" style={{backgroundColor: "Lightcoral" }}>
+      <div className="container" >
         <div className="row">
             <div className="col-3">
                 <Arrow 
