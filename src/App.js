@@ -18,7 +18,7 @@ class App extends Component {
 
   // for the increment and decrememnt check to see the length of the array of questions and limit the functionality of this function to just within the range of the number of questions
 
-  incrementNumber = () => {
+  _incrementNumber = () => {
     if (this.state.questionIndex < this.state.qa.length - 1){
       const questionIndex = this.state.questionIndex + 1;
       this.setState({ questionIndex });
@@ -28,7 +28,7 @@ class App extends Component {
     
   }
 
-  decrementNumber = () => {
+  _decrementNumber = () => {
     if(this.state.questionIndex > 0){
       const questionIndex = this.state.questionIndex - 1;
       this.setState({ questionIndex });
@@ -39,9 +39,9 @@ class App extends Component {
     
   }
 
-  chooseAnswer = (answerIndex) => {
-    console.log(answerIndex);
+  _chooseAnswer = (answerIndex) => {
     this.state.answers.splice(this.state.questionIndex, 1, answerIndex);
+    this._incrementNumber();
     console.log(this.state.answers);
   }
   
@@ -53,9 +53,9 @@ class App extends Component {
         <Jumbotron
           question={this.state.qa[this.state.questionIndex]}
           questionNumber={this.state.questionIndex + 1}
-          incrementNumber={this.incrementNumber}
-          decrementNumber={this.decrementNumber}
-          chooseAnswer={this.chooseAnswer}
+          incrementNumber={this._incrementNumber}
+          decrementNumber={this._decrementNumber}
+          chooseAnswer={this._chooseAnswer}
         />
       </div>
     );
