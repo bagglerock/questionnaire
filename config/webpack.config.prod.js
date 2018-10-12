@@ -169,13 +169,6 @@ module.exports = {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
-                {
-                  fallback: {
-                    loader: require.resolve('style-loader'),
-                    options: {
-                      hmr: false,
-                    },
-                  },
                   use: [
                     {
                       loader: require.resolve('css-loader'),
