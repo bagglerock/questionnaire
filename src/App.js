@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Footer from "./components/Footer/Footer";
 import { Jumbotron } from "./components/Jumbotron"; 
 import { Title } from "./components/Title";
 
@@ -57,6 +58,7 @@ class App extends Component {
           decrementNumber={this._decrementNumber}
           chooseAnswer={this._chooseAnswer}
         />
+        <Footer/>
       </div>
     );
   }
