@@ -82,7 +82,7 @@ module.exports = {
         configureStore: 'app/store/configureStore.jsx'
     },
     extensions: ['', '.js', '.jsx']
-}
+},
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
       // This often causes confusion because we only process files within src/ with babel.
