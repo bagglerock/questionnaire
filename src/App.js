@@ -24,7 +24,7 @@ class App extends Component {
       const questionIndex = this.state.questionIndex + 1;
       this.setState({ questionIndex });
     } else {
-      console.log("you are at the last question.");
+      console.log("you are at the last question!.");
     }
     
   }
