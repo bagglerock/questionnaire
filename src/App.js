@@ -17,6 +17,16 @@ class App extends Component {
 
   }
 
+  componentDidMount() {
+    setInterval(() => {
+      let qi = this.state.questionIndex;
+      qi++;
+      this.setState({
+        questionIndex: qi
+      });
+    }, 1000)
+  }
+
   // for the increment and decrememnt check to see the length of the array of questions and limit the functionality of this function to just within the range of the number of questions
 
   _incrementNumber = () => {

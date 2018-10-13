@@ -2,6 +2,8 @@ import React from "react";
 import { Arrow } from "../Arrow";
 import { Button } from "../Button";
 
+import "./Jumbotron.css";
+
 export const Jumbotron = props => {
 
   return (
