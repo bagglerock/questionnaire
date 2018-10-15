@@ -13,18 +13,23 @@ class App extends Component {
     qa: qa,
     questionIndex: 0,
     answers: [],
-    score: 0
+    gameStats: {},
+    gameRunning: false,
+    questionTimer: "",
+    questionTimeout: ""
 
   }
 
   componentDidMount() {
-    setInterval(() => {
-      let qi = this.state.questionIndex;
-      qi++;
-      this.setState({
-        questionIndex: qi
-      });
-    }, 1000)
+    let qt = setTimeout(() => {
+      console.log("the answer to the question should be displayed");
+    }
+    ,15000);
+
+    this.setState({
+      questionTimeout: qt
+    })
+
   }
 
   // for the increment and decrememnt check to see the length of the array of questions and limit the functionality of this function to just within the range of the number of questions
@@ -55,19 +60,44 @@ class App extends Component {
     this._incrementNumber();
     console.log(this.state.answers);
   }
+
+  _score = (array) => {
+    //do something 
+    // do some kind of loop for each in qa.json
+    // if the index at answer has a true in the status then the count goes up by one... do this for the whole array
+    // check to see if the array length matches... otherwise, not all the questions have been amswered.
+    // try to make it so that if an answer is skipped then place a 0 at its index.
+    
+  }
+
+  _startGame = () => {
+    this.setState({
+      gameRunning: true
+    }) 
+  }
   
   render() {
 
     return (
       <div className="App">
         <Title/>
-        <Jumbotron
-          question={this.state.qa[this.state.questionIndex]}
-          questionNumber={this.state.questionIndex + 1}
-          incrementNumber={this._incrementNumber}
-          decrementNumber={this._decrementNumber}
-          chooseAnswer={this._chooseAnswer}
-        />
+        {
+          this.state.gameRunning ? 
+          (<Jumbotron
+            gameRunning={this.state.gameRunning}
+            question={this.state.qa[this.state.questionIndex]}
+            questionNumber={this.state.questionIndex + 1}
+            incrementNumber={this._incrementNumber}
+            decrementNumber={this._decrementNumber}
+            chooseAnswer={this._chooseAnswer}
+          />)
+          :
+          (<Jumbotron
+            gameRunning={this.state.gameRunning}
+            gameStats={this.state.gameStats}
+            startGame={this._startGame}
+          />)
+        }
         <Footer/>
       </div>
     );
