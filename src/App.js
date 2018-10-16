@@ -13,69 +13,77 @@ class App extends Component {
     qa: qa,
     questionIndex: 0,
     answers: [],
-    gameStats: {},
+    gameStats: {
+      correct: 0
+    },
     gameRunning: false,
-    questionTimer: "",
-    questionTimeout: ""
-
-  }
+    gameTimers: {
+      questionTimer: 1000,
+      questionTimeout: 15000
+    }
+  };
 
   componentDidMount() {
-    let qt = setTimeout(() => {
-      console.log("the answer to the question should be displayed");
-    }
-    ,15000);
-
-    this.setState({
-      questionTimeout: qt
+    //shuffle the questions
+    const shuffled = this._shuffle(this.state.qa);
+;    this.setState({
+      qa: shuffled
     })
-
   }
 
-  // for the increment and decrememnt check to see the length of the array of questions and limit the functionality of this function to just within the range of the number of questions
+  _shuffle = (array) => {
+    //shuffle using the fisher-Yates algorithm to randomize the order
+    // basically, save the last element in a temp, replace the last element with a random element, replace the random element with the saved element.. decrease the length of the array so we dont go forever
+    let currentIndex = array.length;
+    let temporaryValue;
 
-  _incrementNumber = () => {
-    if (this.state.questionIndex < this.state.qa.length - 1){
-      const questionIndex = this.state.questionIndex + 1;
-      this.setState({ questionIndex });
-    } else {
-      console.log("you are at the last question!.");
+    while (0 !== currentIndex){
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
     }
-    
-  }
-
-  _decrementNumber = () => {
-    if(this.state.questionIndex > 0){
-      const questionIndex = this.state.questionIndex - 1;
-      this.setState({ questionIndex });
-    } else {
-      console.log("you are at the first question.")
-    }
-    
-    
-  }
-
-  _chooseAnswer = (answerIndex) => {
-    this.state.answers.splice(this.state.questionIndex, 1, answerIndex);
-    this._incrementNumber();
-    console.log(this.state.answers);
-  }
-
-  _score = (array) => {
-    //do something 
-    // do some kind of loop for each in qa.json
-    // if the index at answer has a true in the status then the count goes up by one... do this for the whole array
-    // check to see if the array length matches... otherwise, not all the questions have been amswered.
-    // try to make it so that if an answer is skipped then place a 0 at its index.
-    
+    return array;
   }
 
   _startGame = () => {
     this.setState({
       gameRunning: true
-    }) 
+    })
   }
-  
+
+  _next = () => {
+    let numberOfQuestions = this.state.qa.length;
+    numberOfQuestions--;
+    console.log(numberOfQuestions);
+    console.log(this.state.questionIndex);
+    if(this.state.questionIndex < numberOfQuestions){
+      let q = this.state.questionIndex;
+      q++;
+      this.setState({
+        questionIndex: q
+      })
+    } else {
+      console.log("this should be the last question");
+    }
+  }
+
+  _chooseAnswer = (status) => {
+    this._next();
+    if(status){
+      let score = this.state.gameStats.correct;
+      score++;
+      this.setState({
+        gameStats: {
+          correct: score
+        }
+      })
+    }
+    
+  }
+
   render() {
 
     return (
@@ -86,9 +94,7 @@ class App extends Component {
           (<Jumbotron
             gameRunning={this.state.gameRunning}
             question={this.state.qa[this.state.questionIndex]}
-            questionNumber={this.state.questionIndex + 1}
-            incrementNumber={this._incrementNumber}
-            decrementNumber={this._decrementNumber}
+            next={this._next}
             chooseAnswer={this._chooseAnswer}
           />)
           :

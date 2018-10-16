@@ -5,19 +5,19 @@
       "answers": [
         {
           "choice": "Banana",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "Dirt",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Umbrella",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Square root of a triangle",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"
@@ -27,19 +27,19 @@
       "answers": [
         {
           "choice": "James Cameron",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "Martian",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Guitar",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Javascript",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"
@@ -49,19 +49,19 @@
       "answers": [
         {
           "choice": "Car",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "George Washington",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Perpetual Motion",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Tower of Hanoi",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"
@@ -71,19 +71,19 @@
       "answers": [
         {
           "choice": "Hans Christian Anderson",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "Hamster",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "17 USD",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Aorta",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"
@@ -94,19 +94,19 @@
       "answers": [
         {
           "choice": "Salacious Crumb",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "Pneumonoultramicroscopicsilicovolcanoconiosis",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "6 of Diamonds",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Twelveteen",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"
@@ -117,19 +117,19 @@
       "answers": [
         {
           "choice": "Truffles",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "Axe Body Spray",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "C",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Vincent Van Gogh",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"
@@ -139,19 +139,19 @@
       "answers": [
         {
           "choice": "Yardstick",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "Blue",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "February 14th 2008",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Chicago Bulls",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"
@@ -161,19 +161,19 @@
       "answers": [
         {
           "choice": "External Occipital Protubrance",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "Edgar Allen Poe",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Horse",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Ceiling Fan",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"
@@ -183,19 +183,19 @@
       "answers": [
         {
           "choice": "Roast Beef Sandwich",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "Labor Pains",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Jaundice",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "A-10 Thunderbolt",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"
@@ -205,19 +205,19 @@
       "answers": [
         {
           "choice": "Astral Projection",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "Lightning and Thunder",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "NORAD",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Isildur",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"
@@ -228,19 +228,19 @@
       "answers": [
         {
           "choice": "10,000 Maniacs",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "Speed of Sound",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Array of Objects",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "a battery",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"
@@ -251,19 +251,19 @@
       "answers": [
         {
           "choice": "The Quickening",
-          "status": "true"
+          "status": true
         },
         {
           "choice": "UMDNJ",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "United Airlines",
-          "status": "false"
+          "status": false
         },
         {
           "choice": "Grover Cleveland",
-          "status": "false"
+          "status": false
         }
       ],
       "link": "somelink.com"

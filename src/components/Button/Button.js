@@ -2,10 +2,8 @@ import React from "react";
 
 export const Button = props => {
 
-    console.log(props.answer);
-
     function _handleClick() {
-        props.action(props.index)
+        props.action(props.status)
     }
 
     return (
