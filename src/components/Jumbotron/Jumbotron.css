@@ -1,3 +1,9 @@
 * {
     font-family: "Quicksand", sans-serif;
   }
+
+  .answers-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+  }

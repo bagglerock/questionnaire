@@ -1,4 +1,5 @@
 import React from "react";
+import "./Button.css";
 
 export const Button = props => {
 
@@ -10,7 +11,7 @@ export const Button = props => {
         <div>
             <button 
                 type="button" 
-                className="btn btn-secondary"
+                className="btn btn-secondary button"
                 onClick={_handleClick}
             >
             {props.children}

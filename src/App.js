@@ -20,7 +20,8 @@ class App extends Component {
     gameTimers: {
       questionTimer: 1000,
       questionTimeout: 15000
-    }
+    },
+    gameComplete: false
   };
 
   componentDidMount() {
@@ -57,8 +58,6 @@ class App extends Component {
   _next = () => {
     let numberOfQuestions = this.state.qa.length;
     numberOfQuestions--;
-    console.log(numberOfQuestions);
-    console.log(this.state.questionIndex);
     if(this.state.questionIndex < numberOfQuestions){
       let q = this.state.questionIndex;
       q++;
@@ -66,7 +65,9 @@ class App extends Component {
         questionIndex: q
       })
     } else {
-      console.log("this should be the last question");
+      this.setState({
+        gameComplete: true
+      })
     }
   }
 
@@ -94,6 +95,8 @@ class App extends Component {
           (<Jumbotron
             gameRunning={this.state.gameRunning}
             question={this.state.qa[this.state.questionIndex]}
+            questionNumber={this.state.questionIndex + 1}
+            totalQuestions={this.state.qa.length}
             next={this._next}
             chooseAnswer={this._chooseAnswer}
           />)
