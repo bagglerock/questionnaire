@@ -5,8 +5,8 @@ import "./Jumbotron.css";
 
 export const Jumbotron = props => {
 
-    console.log(props.game);
     let question = props.game.qa[props.game.questionIndex];
+    let answers = props.shuffle(question.answers);
 
   return (
     <div className="jumbotron" style={{backgroundColor: "Lightcoral" }}>
@@ -23,7 +23,7 @@ export const Jumbotron = props => {
                             <hr className="my-4" />
 
                             <div className="answers-container">
-                                {question.answers.map((answer, i) => (
+                                {answers.map((answer, i) => (
                                     <Button
                                         key={i} 
                                         action={props.chooseAnswer}

@@ -102,6 +102,7 @@ class App extends Component {
           game={this.state.game}
           startGame={this._startGame}
           chooseAnswer={this._chooseAnswer}
+          shuffle={this._shuffle}
         />
         <Footer/>
       </div>
