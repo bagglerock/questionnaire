@@ -10,23 +10,22 @@ import "./App.css";
 class App extends Component {
 
   state = {
-    qa: qa,
-    questionIndex: 0,
-    answers: [],
-    gameStats: {
-      correct: 0
+    game: {
+      gameRunning: false,
+      qa: qa,
+      questionIndex: 0,
+      answers: [],
+      correctAnswers: 0
     },
-    gameRunning: false,
     gameTimers: {
       questionTimer: 1000,
       questionTimeout: 15000
     },
-    gameComplete: false
   };
 
   componentDidMount() {
     //shuffle the questions
-    const shuffled = this._shuffle(this.state.qa);
+    const shuffled = this._shuffle(this.state.game.qa);
 ;    this.setState({
       qa: shuffled
     })
@@ -50,35 +49,43 @@ class App extends Component {
   }
 
   _startGame = () => {
-    this.setState({
+    let {game} = this.state;
+    const newGame = {
+      ...game,
       gameRunning: true
+    }
+    this.setState({
+      game: newGame
     })
   }
 
   _next = () => {
-    let numberOfQuestions = this.state.qa.length;
+    let numberOfQuestions = this.state.game.qa.length;
     numberOfQuestions--;
-    if(this.state.questionIndex < numberOfQuestions){
-      let q = this.state.questionIndex;
+    if(this.state.game.questionIndex < numberOfQuestions){
+      let {game} = this.state;
+      let q = this.state.game.questionIndex;
       q++;
       this.setState({
-        questionIndex: q
-      })
-    } else {
-      this.setState({
-        gameComplete: true
+        game: {
+          ...game,
+          questionIndex: q
+        }
       })
     }
   }
 
   _chooseAnswer = (status) => {
     this._next();
+    console.log("test");
     if(status){
-      let score = this.state.gameStats.correct;
+      let score = this.state.game.correctAnswers;
+      let {game} = this.state;
       score++;
       this.setState({
-        gameStats: {
-          correct: score
+        game: {
+          ...game,
+          correctAnswers: score
         }
       })
     }
@@ -90,23 +97,11 @@ class App extends Component {
     return (
       <div className="App">
         <Title/>
-        {
-          this.state.gameRunning ? 
-          (<Jumbotron
-            gameRunning={this.state.gameRunning}
-            question={this.state.qa[this.state.questionIndex]}
-            questionNumber={this.state.questionIndex + 1}
-            totalQuestions={this.state.qa.length}
-            next={this._next}
-            chooseAnswer={this._chooseAnswer}
-          />)
-          :
-          (<Jumbotron
-            gameRunning={this.state.gameRunning}
-            gameStats={this.state.gameStats}
-            startGame={this._startGame}
-          />)
-        }
+        <Jumbotron
+          game={this.state.game}
+          startGame={this._startGame}
+          chooseAnswer={this._chooseAnswer}
+        />
         <Footer/>
       </div>
     );

@@ -1,0 +1,9 @@
+                                // {props.game.qa[props.game.questionIndex].answers.answers.map((answer, i) => (
+                                //     <Button
+                                //         key={i} 
+                                //         action={props.chooseAnswer}
+                                //         status={answer.status}
+                                //         answer={answer}
+                                //     >{answer.choice}
+                                //     </Button>
+                                // ))}
