@@ -59,36 +59,26 @@ class App extends Component {
     })
   }
 
-  _next = () => {
-    let numberOfQuestions = this.state.game.qa.length;
-    numberOfQuestions--;
-    if(this.state.game.questionIndex < numberOfQuestions){
-      let {game} = this.state;
-      let q = this.state.game.questionIndex;
-      q++;
-      this.setState({
-        game: {
-          ...game,
-          questionIndex: q
-        }
-      })
-    }
-  }
-
   _chooseAnswer = (status) => {
-    this._next();
-    console.log("test");
-    if(status){
-      let score = this.state.game.correctAnswers;
-      let {game} = this.state;
-      score++;
-      this.setState({
-        game: {
-          ...game,
-          correctAnswers: score
-        }
-      })
+    let {game} = this.state;
+    let score = this.state.game.correctAnswers;
+    let numberOfQuestions = this.state.game.qa.length;
+    let q = this.state.game.questionIndex;
+
+    if(this.state.game.questionIndex < (numberOfQuestions - 1)){
+      q++;
     }
+
+    if(status){
+      score++;
+    }
+    this.setState({
+      game: {
+        ...game,
+        questionIndex: q,
+        correctAnswers: score
+      }
+    })
     
   }
 
