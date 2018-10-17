@@ -15,7 +15,8 @@ class App extends Component {
       qa: qa,
       questionIndex: 0,
       answers: [],
-      correctAnswers: 0
+      correctAnswers: 0,
+      highScore: 0
     },
     gameTimers: {
       questionTimer: 1000,
@@ -64,19 +65,29 @@ class App extends Component {
     let score = this.state.game.correctAnswers;
     let numberOfQuestions = this.state.game.qa.length;
     let q = this.state.game.questionIndex;
-
-    if(this.state.game.questionIndex < (numberOfQuestions - 1)){
-      q++;
-    }
+    let gr = this.state.game.gameRunning;
+    let hs = this.state.game.highScore;
 
     if(status){
       score++;
     }
+
+    if(this.state.game.questionIndex < (numberOfQuestions - 1)){
+      q++;
+    } else  {
+      gr = false;
+      if(score > hs){
+        hs = score;
+      }
+    }
+
     this.setState({
       game: {
         ...game,
         questionIndex: q,
-        correctAnswers: score
+        correctAnswers: score,
+        gameRunning: gr,
+        highScore: hs
       }
     })
     

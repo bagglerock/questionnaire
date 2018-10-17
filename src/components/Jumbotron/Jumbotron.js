@@ -28,7 +28,7 @@ export const Jumbotron = props => {
                                         key={i} 
                                         action={props.chooseAnswer}
                                         status={answer.status}
-                                        answer={answer.choice}
+                                        answer={answer}
                                     >{answer.choice}
                                     </Button>
                                 ))}
@@ -45,6 +45,8 @@ export const Jumbotron = props => {
                 <div className="row">
                     <div className="col-12">
                         <h2>Welcome to this game, hit the start button.</h2>
+                        <hr className="my-4"/>
+                        <p>High Score: {props.game.highScore}</p>
                     </div>
                 </div>
                 <div className="row">
