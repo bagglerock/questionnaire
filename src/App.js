@@ -16,19 +16,26 @@ class App extends Component {
       questionIndex: 0,
       answers: [],
       correctAnswers: 0,
-      highScore: 0
-    },
-    gameTimers: {
-      questionTimer: 1000,
-      questionTimeout: 15000
-    },
+      highScore: 0,
+      coundownInterval: {},
+      countdown: 10
+    }
   };
 
   componentDidMount() {
+    let {game} = this.state;
     //shuffle the questions
     const shuffled = this._shuffle(this.state.game.qa);
-;    this.setState({
-      qa: shuffled
+    //start the timer
+    const countdownInterval = setInterval(this._countdown, 1000);
+
+    const newGame = {
+      ...game,
+      qa: shuffled,
+      countdownInterval: countdownInterval
+    }
+    this.setState({
+      game: newGame     
     })
   }
 
@@ -93,6 +100,23 @@ class App extends Component {
     
   }
 
+  _countdown = () => {
+    let {game} = this.state;
+    let newCountdown = this.state.game.countdown;
+    newCountdown--;
+
+    let newGame = {
+      ...game,
+      countdown: newCountdown
+    }
+    this.setState({
+      game: newGame
+    })
+    if(this.state.game.countdown < 1){
+      clearInterval(this.state.game.countdownInterval);
+    }
+  }
+
   render() {
 
     return (
@@ -103,6 +127,7 @@ class App extends Component {
           startGame={this._startGame}
           chooseAnswer={this._chooseAnswer}
           shuffle={this._shuffle}
+          countdown={this.state.game.countdown}
         />
         <Footer/>
       </div>
