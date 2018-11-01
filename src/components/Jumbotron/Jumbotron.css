@@ -1,9 +1,16 @@
 * {
-    font-family: "Quicksand", sans-serif;
-  }
+  font-family: "Quicksand", sans-serif;
+}
 
-  .answers-container {
+.answers-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 10px;
+}
+
+@media (min-width: 900px) {
+  .answers-container{
     display: grid;
     grid-template-columns: auto auto;
-    grid-gap: 10px;
   }
+}

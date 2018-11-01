@@ -37,6 +37,8 @@ class App extends Component {
     this.setState({
       game: newGame     
     })
+
+    //move the timer to the start button
   }
 
   _shuffle = (array) => {
