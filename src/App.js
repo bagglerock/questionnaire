@@ -14,11 +14,13 @@ class App extends Component {
       gameRunning: false,
       qa: qa,
       questionIndex: 0,
+      questionsLength: qa.length,
       answers: [],
       correctAnswers: 0,
       highScore: 0,
       coundownInterval: {},
-      countdown: 10
+      countdown: 10,
+      timesUp: false
     }
   };
 
@@ -26,13 +28,10 @@ class App extends Component {
     let {game} = this.state;
     //shuffle the questions
     const shuffled = this._shuffle(this.state.game.qa);
-    //start the timer
-    const countdownInterval = setInterval(this._countdown, 1000);
 
     const newGame = {
       ...game,
-      qa: shuffled,
-      countdownInterval: countdownInterval
+      qa: shuffled
     }
     this.setState({
       game: newGame     
@@ -58,15 +57,66 @@ class App extends Component {
     return array;
   }
 
+  //this is what happens when the start button is pressed
   _startGame = () => {
+    this._nextQuestion();
+  }
+
+  //this does a few things but ultimately sets the state with a new question and or ends game
+  _nextQuestion = () => {
+    //hold the state in a variable
     let {game} = this.state;
+    //gameRunning state
+    let gr = this.state.game.gr;
+    //questionIndeex state
+    let qi = this.state.game.questionIndex;
+    let timer;
+    //if the next question is the same as the questions array length then end the game
+    if((qi + 1) === this.state.questionsLength){
+      gr = false;
+    } else {
+      //increment the question index
+      qi++;
+      //gameRunning is set to true
+      gr = true;
+      //set a countdown timer with a callback function
+      timer = this._setCountdown(1000, this._nextQuestion);
+      
+    }
+
+    //make a temporary variable to hold the new state
     const newGame = {
       ...game,
-      gameRunning: true
+      gameRunning: gr,
+      questionIndex: qi,
+      countdownInterval: timer
+
     }
+
+    // set the state
     this.setState({
       game: newGame
     })
+    
+  }
+
+  //set the countdown function.. takes in a time and a callback function
+  _setCountdown = (time, cb) => {
+    setTimeout(() => {
+      //do this...
+      cb();
+      //after this many seconds...
+    }, time);
+  }
+
+
+  //this has to show the answer and set a new timer for this and when its done show the next question
+  _showAnswer = () => {
+    let {game} = this.state;
+    let sa = true;
+    this.setState({
+      timesUp: sa
+    });
   }
 
   _chooseAnswer = (status) => {

@@ -7,21 +7,27 @@ export const Jumbotron = props => {
 
     let question = props.game.qa[props.game.questionIndex];
     let answers = props.shuffle(question.answers);
+    // let content;
+
+    // if(props.game.gameRunning){
+    //     content = <h1>test</h1>;
+    // } else {
+    //     content = <h1>not a test </h1>;
+    // }
 
     return (
         <div className="jumbotron" style={{backgroundColor: "Lightcoral" }}>
-            <div>
-                <h3>{props.countdown}</h3>
-            </div>
-
             {
                 props.game.gameRunning ? 
 
                 (
                     <div className="container" >
+                        <div>
+                            <h3>{props.countdown}</h3>
+                        </div>
                         <div className="row">
                             <div className="col-6">
-                                <h1 className="display-5">Question {props.game.questionIndex + 1} of {props.game.qa.length}</h1>
+                                <h1 className="display-5">Question {props.game.questionIndex} of {props.game.qa.length}</h1>
                                 <p className="lead">{question.question}</p>
                                 <hr className="my-4" />
 
