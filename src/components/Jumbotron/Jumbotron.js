@@ -23,7 +23,7 @@ export const Jumbotron = props => {
                 (
                     <div className="container" >
                         <div>
-                            <h3>{props.countdown}</h3>
+                            <h3>{props.game.countdown}</h3>
                         </div>
                         <div className="row">
                             <div className="col-6">

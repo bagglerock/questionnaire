@@ -11,34 +11,24 @@ class App extends Component {
 
   state = {
     game: {
+      answers: [],
+      correctAnswers: 0,
       gameRunning: false,
+      highScore: 0,
       qa: qa,
       questionIndex: 0,
       questionsLength: qa.length,
-      answers: [],
-      correctAnswers: 0,
-      highScore: 0,
-      coundownInterval: {},
       countdown: 10,
-      timesUp: false
+      countdownTimer: "",
+      questionTime: 3000,
+      questionTimer: "",
+      answerTime: 6000,
+      answerTimer: "",
+      showNextTimer: "",
+      showAnswer: false
+      
     }
   };
-
-  componentDidMount() {
-    let {game} = this.state;
-    //shuffle the questions
-    const shuffled = this._shuffle(this.state.game.qa);
-
-    const newGame = {
-      ...game,
-      qa: shuffled
-    }
-    this.setState({
-      game: newGame     
-    })
-
-    //move the timer to the start button
-  }
 
   _shuffle = (array) => {
     //shuffle using the fisher-Yates algorithm to randomize the order
@@ -59,29 +49,77 @@ class App extends Component {
 
   //this is what happens when the start button is pressed
   _startGame = () => {
-    this._nextQuestion();
+    const QuestionTime = this.state.game.questionTime;
+    const AnswerTime = this.state.game.AnswerTime;
+    //Check if questions exist
+    if(this.state.game.qa.length > 0){
+      
+      //save the old state so we don't overwrite it
+      let {game} = this.state;
+      
+      //make a temporary variable for changes
+      
+      //start a timer and something else
+      const questionTimer = setTimeout(() => {
+        //same old save the old state
+        console.log("showing the answer")
+        let {game} = this.state;
+        const showNextTimer = setTimeout(() => {
+          console.log("show the next question");
+        }, AnswerTime)
+        //same old take a temp variable for the changes
+        const updatedGame = {
+          ...game,
+          showAnswer: true,
+          showNextTimer: showNextTimer
+        }
+        //update the game so the answer shows
+        this.setState({
+          game: updatedGame
+        })
+
+      }, QuestionTime);
+
+      //the game is set to running, the questionTimer Timeout is activated, and the showAnswer is set to false
+      const updatedGame = {
+        ...game,
+        gameRunning: true,
+        questionTimer: questionTimer,
+        showAnswer: false
+      }
+      //change the state
+      this.setState({
+        game: updatedGame
+      })
+      //this does nothing but just say something...
+    } else {
+      console.log("no questions, sorry");
+    }
+    
   }
 
   //this does a few things but ultimately sets the state with a new question and or ends game
   _nextQuestion = () => {
+    //MAKE SOMETHING TO CLEAR INTERVALS
+    // clearInterval(interval);
     //hold the state in a variable
     let {game} = this.state;
     //gameRunning state
     let gr = this.state.game.gr;
-    //questionIndeex state
+    //questionIndex state
     let qi = this.state.game.questionIndex;
-    let timer;
+    let countdownInterval;
     //if the next question is the same as the questions array length then end the game
-    if((qi + 1) === this.state.questionsLength){
+    if((qi + 1) === this.state.game.questionsLength){
       gr = false;
+      
     } else {
       //increment the question index
       qi++;
       //gameRunning is set to true
       gr = true;
       //set a countdown timer with a callback function
-      timer = this._setCountdown(1000, this._nextQuestion);
-      
+      countdownInterval = this._setCountdown(3000, this._showAnswer);
     }
 
     //make a temporary variable to hold the new state
@@ -89,7 +127,7 @@ class App extends Component {
       ...game,
       gameRunning: gr,
       questionIndex: qi,
-      countdownInterval: timer
+      countdownInterval: countdownInterval
 
     }
 
@@ -102,20 +140,45 @@ class App extends Component {
 
   //set the countdown function.. takes in a time and a callback function
   _setCountdown = (time, cb) => {
-    setTimeout(() => {
-      //do this...
-      cb();
-      //after this many seconds...
-    }, time);
-  }
+    let {game} = this.state;
+    const countdownInterval = setInterval(() => {
+      let updateCountdown = {
+        ...game,
+        countdown: this.state.game.countdown - 1
+      }
+      console.log(updateCountdown);
+      console.log(this.state.game.gameRunning);
 
+      this.setState({
+        game: updateCountdown
+      });
+
+    }, 1000)
+
+    //countdown to show the question... when its done, it will show the answer
+    const questionTimer = setTimeout(() => {
+      cb();
+    }, time)
+
+    let updatedGame = {
+      ...game,
+      questionTimer: questionTimer,
+      countdownInterval: countdownInterval
+    }
+    this.setState({
+      game: updatedGame
+    });
+  }
 
   //this has to show the answer and set a new timer for this and when its done show the next question
   _showAnswer = () => {
     let {game} = this.state;
-    let sa = true;
+    let sa = {
+      ...game,
+      timesUp: true
+    }
     this.setState({
-      timesUp: sa
+      game: sa
     });
   }
 
@@ -179,12 +242,39 @@ class App extends Component {
           startGame={this._startGame}
           chooseAnswer={this._chooseAnswer}
           shuffle={this._shuffle}
-          countdown={this.state.game.countdown}
         />
         <Footer/>
       </div>
     );
   }
+
+  componentDidMount() {
+    let {game} = this.state;
+    //shuffle the questions
+    const shuffled = this._shuffle(this.state.game.qa);
+
+    const newGame = {
+      ...game,
+      qa: shuffled
+    }
+    this.setState({
+      game: newGame     
+    })
+    
+
+
+    //move the timer to the start button
+  }
+
+  componentDidUpdate() {
+    if (this.state.game.gameRunning){
+      console.log("this game is running now");
+      console.log(this.state.game.qa.length);
+      console.log(this.state.game.questionIndex);
+    }
+  }
+
+
 }
 
 export default App;
