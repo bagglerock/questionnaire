@@ -38,7 +38,6 @@ class App extends Component {
     while (0 !== currentIndex){
       let randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
@@ -64,6 +63,7 @@ class App extends Component {
     clearInterval(this.state.game.questionTimer);
     clearInterval(this.state.game.countdownTimer);
 
+    //if the game still has questions then continue the game
     if(this.state.game.questionIndex + 1 !== this.state.game.questionsLength){
       let {game} = this.state;
       //set the time for the answer to show
@@ -174,7 +174,6 @@ class App extends Component {
     this.setState({
       game: newGame     
     })
-  
     //move the timer to the start button
   }
 
@@ -182,7 +181,12 @@ class App extends Component {
   componentDidUpdate() {
   }
 
-
+  //clear up any intervals in case so that there isn't a memory leak
+  componentWillUnmount() {
+    clearInterval(this.state.game.answerTimer);
+    clearInterval(this.state.game.questionTimer);
+    clearInterval(this.state.game.countdownTimer);
+  }
 }
 
 export default App;
