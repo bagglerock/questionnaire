@@ -20,9 +20,9 @@ class App extends Component {
       questionsLength: qa.length,
       countdown: 10,
       countdownTimer: "",
-      questionTime: 3000,
+      questionTime: 5000,
       questionTimer: "",
-      answerTime: 6000,
+      answerTime: 10000,
       answerTimer: "",
       showAnswer: false
       
@@ -56,31 +56,77 @@ class App extends Component {
   }
 
   _setAnswerTimer = () => {
-    let {game} = this.state;
-    const answerTimer = setTimeout(() => {
-      this._setQuestionTimer();
-    }, 10000)
-    const updatedGame = {
-      ...game,
-      gameRunning: true,
-      showAnswer: false,
-      answerTimer: answerTimer
+    //called this because this is the amount of time the quesion is displayed... seems weird but I suck at naming
+    const QuestionTime = this.state.game.questionTime;
+
+    //clear intervals in case
+    clearInterval(this.state.game.answerTimer);
+    clearInterval(this.state.game.questionTimer);
+    clearInterval(this.state.game.countdownTimer);
+
+    if(this.state.game.questionIndex + 1 !== this.state.game.questionsLength){
+      let {game} = this.state;
+      //set the time for the answer to show
+      const answerTimer = setTimeout(() => {
+        this._setQuestionTimer();
+      }, QuestionTime)
+      //set the interval timer
+      const intervalTimer = setInterval(() => {
+        let {game} = this.state;
+        let countdown = this.state.game.countdown - 1;
+        let updatedGame = {
+          ...game,
+          countdown: countdown
+        };
+        this.setState({
+          game: updatedGame
+        })
+      }, 1000)
+      //check if the game is running and set the questionIndex accordingly
+      let questionIndex;
+      //this part not only increments the question index but only does it when the game has been running, that way it doesn't skip the first question upon start
+      if(this.state.game.gameRunning){
+        questionIndex = this.state.game.questionIndex + 1;
+      } else {
+        questionIndex = this.state.game.questionIndex;
+      }
+      //temporary state
+      const updatedGame = {
+        ...game,
+        gameRunning: true,
+        questionIndex: questionIndex,
+        showAnswer: false,
+        answerTimer: answerTimer,
+        intervalTimer: intervalTimer
+      }
+      //setState
+      this.setState({
+        game: updatedGame
+      })
+    } else {
+      this._endGame();
     }
-    this.setState({
-      game: updatedGame
-    })
   }
 
   _setQuestionTimer = () => {
+    //once again weird because it seems like it should be called question timer but this is the amount of time the answer is displayed
+    const AnswerTime = this.state.game.answerTime;
+
+    //clear intervals in case
+    clearInterval(this.state.game.answerTimer);
+    clearInterval(this.state.game.questionTimer);
+    clearInterval(this.state.game.countdownTimer);
 
     //endGame if question max is reached
     let {game} = this.state;
     const questionTimer = setTimeout(() => {
       this._setAnswerTimer();
-    }, 5000)
+    }, AnswerTime)
+    const countdown = 9;
     const updatedGame = {
       ...game,
       showAnswer: true,
+      countdown: countdown,
       questionTimer: questionTimer
     }
     this.setState({

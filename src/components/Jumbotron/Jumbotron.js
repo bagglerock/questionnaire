@@ -6,7 +6,8 @@ import "./Jumbotron.css";
 export const Jumbotron = props => {
 
     let question = props.game.qa[props.game.questionIndex];
-    let answers = props.shuffle(question.answers);
+    // let answers = props.shuffle(question.answers);
+    let answers = question.answers;
     // let content;
 
     // if(props.game.gameRunning){
