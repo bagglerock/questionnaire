@@ -20,9 +20,9 @@ class App extends Component {
       questionsLength: qa.length,
       countdown: 10,
       countdownTimer: "",
-      questionTime: 5000,
+      questionTime: 10000,
       questionTimer: "",
-      answerTime: 10000,
+      answerTime: 5000,
       answerTimer: "",
       showAnswer: false
       
@@ -97,7 +97,7 @@ class App extends Component {
         questionIndex: questionIndex,
         showAnswer: false,
         answerTimer: answerTimer,
-        intervalTimer: intervalTimer
+        countdownTimer: intervalTimer
       }
       //setState
       this.setState({
@@ -180,11 +180,6 @@ class App extends Component {
 
 
   componentDidUpdate() {
-    if (this.state.game.gameRunning){
-      console.log("this game is running now");
-      console.log(this.state.game.qa.length);
-      console.log(this.state.game.questionIndex);
-    }
   }
 
 

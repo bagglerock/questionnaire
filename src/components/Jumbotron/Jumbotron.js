@@ -28,7 +28,7 @@ export const Jumbotron = props => {
                         </div>
                         <div className="row">
                             <div className="col-6">
-                                <h1 className="display-5">Question {props.game.questionIndex} of {props.game.qa.length}</h1>
+                                <h1 className="display-5">Question {props.game.questionIndex + 1} of {props.game.qa.length}</h1>
                                 <p className="lead">{question.question}</p>
                                 <hr className="my-4" />
 
