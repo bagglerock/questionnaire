@@ -119,6 +119,7 @@ class App extends Component {
 
     //endGame if question max is reached
     let {game} = this.state;
+    //setting up the timer
     const questionTimer = setTimeout(() => {
       this._setAnswerTimer();
     }, AnswerTime)
@@ -132,6 +133,39 @@ class App extends Component {
     this.setState({
       game: updatedGame
     }); 
+  }
+
+  _chooseAnswer = (status) => {
+    let {game} = this.state;
+    let score = this.state.game.correctAnswers;
+    let numberOfQuestions = this.state.game.qa.length;
+    let q = this.state.game.questionIndex;
+    let gr = this.state.game.gameRunning;
+    let hs = this.state.game.highScore;
+
+    if(status){
+      score++;
+    }
+
+    if(this.state.game.questionIndex < (numberOfQuestions - 1)){
+      q++;
+    } else  {
+      gr = false;
+      if(score > hs){
+        hs = score;
+      }
+    }
+
+    this.setState({
+      game: {
+        ...game,
+        questionIndex: q,
+        correctAnswers: score,
+        gameRunning: gr,
+        highScore: hs
+      }
+    })
+    
   }
 
   _endGame = () => {
@@ -174,7 +208,6 @@ class App extends Component {
     this.setState({
       game: newGame     
     })
-    //move the timer to the start button
   }
 
 

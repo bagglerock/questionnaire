@@ -8,11 +8,14 @@ export const Jumbotron = props => {
     let question = props.game.qa[props.game.questionIndex];
     // let answers = props.shuffle(question.answers);
     let answers = question.answers;
+    let correctAnswer = question.answers.filter(answer => answer.status);
     let content;
 
+    //set up different templates depending on what the status of the game is...
     if(props.game.gameRunning){
         if(props.game.showAnswer){
-            content = <h1>answer is displayed</h1>
+            //probably not the most elegant way but I filtered the original array and returned the first element of the array
+            content = <h1>The correct answer is:  {correctAnswer[0].choice}</h1>
 
         } else {
             content = 
