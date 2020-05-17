@@ -1,16 +1,15 @@
 import React from 'react';
-import { Jumbotron } from 'react-bootstrap';
+import { Footer } from 'sections/Footer/Footer';
+import { Header } from 'sections/Header/Header';
+import { Main } from 'sections/Main/Main';
 
 export const App: React.FC = () => (
-  <div className="bg-danger">
-    <h1>Weird Trivia Fun</h1>
-    <Jumbotron className="mb-5">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi modi minima, suscipit expedita nobis sunt neque temporibus. Sed
-        asperiores voluptate tempora, nesciunt, dolorum officia saepe id, in qui rem accusamus!
-      </p>
-    </Jumbotron>
-    <footer>&copy; Oscar Villalta</footer>
+  <div className="h-100 bg-danger" style={{ height: '100vh' }}>
+    <Header />
+
+    <Main />
+
+    <Footer />
   </div>
 );
 
