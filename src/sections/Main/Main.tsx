@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGame } from 'sections/Main/Game/useGame';
+import { useGame } from 'sections/Main/useGame';
 import { Button } from 'react-bootstrap';
 import { Game } from 'sections/Main/Game/Game';
 
