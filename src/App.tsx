@@ -4,7 +4,7 @@ import { Header } from 'sections/Header/Header';
 import { Main } from 'sections/Main/Main';
 
 export const App: React.FC = () => (
-  <div className="h-100 bg-danger" style={{ height: '100vh' }}>
+  <div className="app">
     <Header />
 
     <Main />
