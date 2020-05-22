@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { Answer } from 'sections/Main/Answer';
+import { Answer } from 'sections/Main/models/Answer';
 import { shuffle } from 'lodash';
 
 export const Answers: React.FC<AnswerProps> = ({ answers, handleClick }) => {
