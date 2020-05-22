@@ -4,12 +4,36 @@
 }
 
 .question-wrapper {
+  height: 400px;
   background-color: lightcoral;
   padding: 5em;
-  color: white;
+  color: black;
+
+  @media (max-width: 1100px) {
+    h2 {
+      font-size: 120%;
+    }
+  }
 }
 
 .answer-wrapper {
-  background-color: lightgoldenrodyellow;
-  color: black;
+  padding: 2em;
+  display: flex;
+  flex-wrap: wrap;
+
+  button {
+    margin: 2em;
+    border: black solid 1px;
+    background-color: lightcoral;
+    flex: 40%;
+  }
+
+  button:hover {
+    background-color: coral;
+  }
+
+  button:focus {
+    background-color: gold;
+    color: black;
+  }
 }
