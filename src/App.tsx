@@ -7,14 +7,14 @@ export const App: React.FC = () => (
   <div className="app">
     <Header />
 
-    <Main />
+    <div className="main">
+      <Main />
+    </div>
 
     <Footer />
   </div>
 );
 
-// will need a game state, maybe in context
 // will need something to control the timers, maybe a hook
 
 // try to hook this to some API to get questions
-// have to get bootstrap working
