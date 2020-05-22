@@ -4,7 +4,10 @@ export const useGame = (questions: any) => {
   const [gameIsOn, setGameIsOn] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(0);
 
-  const startGame = () => setGameIsOn(true);
+  const startGame = () => {
+    setQuestionNumber(0);
+    setGameIsOn(true);
+  };
 
   const handleClick = () => {
     if (questionNumber >= questions.length - 1) {
