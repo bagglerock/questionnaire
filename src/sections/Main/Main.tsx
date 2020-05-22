@@ -8,7 +8,7 @@ import { useGame } from './useGame';
 export const Main: React.FC = () => {
   const questions = questionsRepository.get();
 
-  const { questionNumber, advanceQuestion } = useGame(questions);
+  const { questionNumber, handleClick } = useGame(questions);
 
   const shuffledQuestions = shuffle(questions);
 
@@ -20,8 +20,7 @@ export const Main: React.FC = () => {
         <Question question={question.question} />
       </div>
       <div className="answer-wrapper">
-        <Answers answers={question.answers} />
-        <button onClick={advanceQuestion}></button>
+        <Answers answers={question.answers} handleClick={handleClick} />
       </div>
     </div>
   );
