@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { Question } from 'sections/Main/models/Question';
+import { questionsRepository } from 'services/QuestionRepository';
 
-export const useGame = (questions: any) => {
+export const useGame = () => {
+  const [questions, setQuestions] = useState([new Question()]);
   const [gameIsOn, setGameIsOn] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(0);
 
   const startGame = () => {
+    setQuestions(questionsRepository.get());
     setQuestionNumber(0);
     setGameIsOn(true);
   };
@@ -24,5 +28,6 @@ export const useGame = (questions: any) => {
     questionNumber,
     startGame,
     handleClick,
+    questions,
   };
 };
