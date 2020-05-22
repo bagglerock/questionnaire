@@ -6,10 +6,18 @@
 .question-wrapper {
   height: 400px;
   background-color: lightcoral;
-  padding: 5em;
+  padding: 2em;
   color: black;
 
+  div {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
   @media (max-width: 1100px) {
+    padding: 1em;
+
     h2 {
       font-size: 150%;
     }
