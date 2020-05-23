@@ -1,21 +1,30 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { Answers } from 'sections/Main/Game/sections/Answers';
 import { Question } from 'sections/Main/Game/sections/Question';
-import { Answer } from 'sections/Main/models/Answer';
+import { useGame } from 'sections/Main/useGame';
 
-export const Game: React.FC<GameProps> = ({ question, answers, handleClick }) => (
-  <>
-    <div className="question-wrapper">
-      <Question question={question} />
-    </div>
-    <div className="answer-wrapper">
-      <Answers answers={answers} handleClick={handleClick} />
-    </div>
-  </>
-);
+export const Game: React.FC = () => {
+  const { questionNumber, handleClick, gameIsOn, startGame, questions } = useGame();
 
-interface GameProps {
-  question: string;
-  answers: Answer[];
-  handleClick: () => void;
-}
+  const currentQuestion = questions[questionNumber];
+
+  if (!gameIsOn) {
+    return (
+      <div className="start-menu">
+        <Button onClick={startGame}>Start Game</Button>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div className="question-wrapper">
+        <Question question={currentQuestion.question} />
+      </div>
+      <div className="answer-wrapper">
+        <Answers answers={currentQuestion.answers} handleClick={handleClick} />
+      </div>
+    </>
+  );
+};

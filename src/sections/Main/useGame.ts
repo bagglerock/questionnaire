@@ -20,6 +20,7 @@ export const useGame = () => {
       return;
     }
 
+    // check to see if answer is correct
     setQuestionNumber(questionNumber + 1);
   };
 
