@@ -5,9 +5,9 @@ import { Question } from 'sections/Main/Game/sections/Question';
 import { useGame } from 'sections/Main/useGame';
 
 export const Game: React.FC = () => {
-  const { questionNumber, handleClick, gameIsOn, startGame, questions } = useGame();
+  const { currentQuestionId, handleClick, gameIsOn, startGame, questions } = useGame();
 
-  const currentQuestion = questions[questionNumber];
+  const currentQuestion = questions[currentQuestionId];
 
   if (!gameIsOn) {
     return (
