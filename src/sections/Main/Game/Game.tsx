@@ -11,20 +11,20 @@ export const Game: React.FC = () => {
 
   if (!gameIsOn) {
     return (
-      <div className="start-menu">
+      <div className="game start-page">
         <Button onClick={startGame}>Start Game</Button>
       </div>
     );
   }
 
   return (
-    <>
+    <div className="game">
       <div className="question-wrapper">
         <Question question={currentQuestion.question} />
       </div>
       <div className="answer-wrapper">
         <Answers answers={currentQuestion.answers} handleClick={handleClick} />
       </div>
-    </>
+    </div>
   );
 };
