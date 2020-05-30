@@ -1,3 +1,4 @@
+import { find } from 'lodash';
 import { useEffect, useState } from 'react';
 import { Question } from 'sections/Main/models/Question';
 import { questionsRepository } from 'services/QuestionRepository';
@@ -7,6 +8,10 @@ export const useGame = () => {
   const [gameIsOn, setGameIsOn] = useState(false);
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const [message, setMessage] = useState('');
+
+  const { answers, correctAnswer } = questions[currentQuestionId];
+
+  const answer = find(answers, (a: any) => a === correctAnswer); // not sure if this catches a bad value
 
   useEffect(() => {
     if (currentQuestionId === questions.length - 1) {
@@ -25,9 +30,16 @@ export const useGame = () => {
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const choice = e.currentTarget.textContent || '';
+    const choice = e.currentTarget.textContent;
 
-    setMessage(choice);
+    if (choice === answer) {
+      setCurrentQuestionId(currentQuestionId + 1);
+
+      setMessage('correct');
+      return;
+    }
+
+    setMessage('that is incorrect');
   };
 
   return {

@@ -24,6 +24,7 @@ const mapQuestions = (data: any): Question[] => {
 
     return new Question({
       question: result.question,
+      correctAnswer: result.correct_answer,
       answers,
     });
   });
