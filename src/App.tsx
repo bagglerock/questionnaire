@@ -5,7 +5,7 @@ import { Main } from 'sections/Main/Main';
 
 export const App: React.FC = () => (
   <div className="app">
-    <Header />
+    <Header title="Trivia" />
 
     <div className="main">
       <Main />
