@@ -1,7 +1,6 @@
+import { shuffle } from 'lodash';
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { Answer } from 'sections/Main/models/Answer';
-import { shuffle } from 'lodash';
 
 export const Answers: React.FC<AnswerProps> = ({ answers, handleClick }) => {
   const shuffledAnswers = shuffle(answers) || [];
@@ -9,8 +8,8 @@ export const Answers: React.FC<AnswerProps> = ({ answers, handleClick }) => {
   return (
     <>
       {shuffledAnswers.map(answer => (
-        <Button key={answer.choice} onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e)}>
-          {answer.choice}
+        <Button key={answer} onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e)}>
+          {answer}
         </Button>
       ))}
     </>
@@ -18,6 +17,6 @@ export const Answers: React.FC<AnswerProps> = ({ answers, handleClick }) => {
 };
 
 interface AnswerProps {
-  answers: Answer[];
+  answers: any;
   handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
