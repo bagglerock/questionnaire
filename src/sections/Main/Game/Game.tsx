@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Answers } from 'sections/Main/Game/sections/Answers';
 import { Question } from 'sections/Main/Game/sections/Question';
 import { useGame } from 'sections/Main/useGame';
 
 export const Game: React.FC = () => {
-  const { currentQuestionId, handleClick, gameIsOn, startGame, questions } = useGame();
-
-  const [message, setMessage] = useState('hello world');
+  const { currentQuestionId, handleClick, gameIsOn, startGame, questions, message } = useGame();
 
   const currentQuestion = questions[currentQuestionId];
 
@@ -24,7 +22,7 @@ export const Game: React.FC = () => {
       <div className="question-wrapper">
         <Question question={currentQuestion.question} />
       </div>
-      <div className="text-center pt-1 pb-1 bg-success ">
+      <div className="text-center pt-1">
         <Message message={message} />
       </div>
       <div className="answer-wrapper">

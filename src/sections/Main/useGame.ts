@@ -8,6 +8,7 @@ export const useGame = () => {
   const [questions, setQuestions] = useState([new Question()]);
   const [gameIsOn, setGameIsOn] = useState(false);
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
+  const [message, setMessage] = useState('');
 
   const { answers } = questions[currentQuestionId];
 
@@ -21,8 +22,10 @@ export const useGame = () => {
     }
   }, [currentQuestionId, questions]);
 
-  const startGame = () => {
-    setQuestions(questionsRepository.get());
+  const startGame = async () => {
+    const questions = await questionsRepository.get();
+
+    setQuestions(questions);
     setCurrentQuestionId(0);
     setGameIsOn(true);
   };
@@ -33,10 +36,11 @@ export const useGame = () => {
     if (choice === correctAnswer.choice) {
       setCurrentQuestionId(currentQuestionId + 1);
 
+      setMessage('correct');
       return;
     }
 
-    console.log('choose again...');
+    setMessage('that is incorrect');
   };
 
   return {
@@ -45,5 +49,6 @@ export const useGame = () => {
     startGame,
     handleClick,
     questions,
+    message,
   };
 };
