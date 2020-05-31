@@ -1,6 +1,6 @@
 export class Question {
   question: string = '';
-  answers: any[] = [];
+  answers: string[] = [];
   correctAnswer: string = '';
 
   constructor(data: Partial<Question> = {}) {

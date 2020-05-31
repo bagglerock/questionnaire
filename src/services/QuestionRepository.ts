@@ -22,10 +22,12 @@ const mapQuestions = (data: any): Question[] => {
   const questions = data.map((result: any) => {
     const answers = concat(result.incorrect_answers, result.correct_answer);
 
+    const shuffledAnswers = shuffle(answers) || [];
+
     return new Question({
       question: result.question,
       correctAnswer: result.correct_answer,
-      answers,
+      answers: shuffledAnswers,
     });
   });
 
