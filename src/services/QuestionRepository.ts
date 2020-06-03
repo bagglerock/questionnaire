@@ -1,13 +1,13 @@
 import { AllHtmlEntities } from 'html-entities';
 import { concat, shuffle } from 'lodash';
 import { Question } from 'sections/Main/models/Question';
-// import { questionsClient } from './QuestionsClient';
-import mock from './mockResponse.json';
+import { questionsClient } from 'services/QuestionsClient';
+// import mock from './mockResponse.json';
 
 class QuestionsRepository {
   async get(): Promise<any> {
-    // const response = await questionsClient.get('/api.php?amount=10');
-    const response = mock;
+    const response = await questionsClient.get('/api.php?amount=10');
+    // const response = mock;
 
     const results = response.data.results;
 
