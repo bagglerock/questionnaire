@@ -22,7 +22,7 @@ export const Game: React.FC = () => {
       <div className="question-wrapper">
         <Question question={currentQuestion.question} />
       </div>
-      <div className="text-center pt-1">
+      <div className="message-wrapper">
         <Message message={message} />
       </div>
       <div className="answer-wrapper">
