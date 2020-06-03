@@ -27,12 +27,20 @@ const mapQuestions = (data: any): Question[] => {
 
     const decodedAnswers = answers.map(answer => decode(answer));
 
-    const shuffledAnswers = shuffle(decodedAnswers) || [];
+    if (decodedAnswers[0] !== 'True') {
+      const shuffledAnswers = shuffle(decodedAnswers) || [];
+
+      return new Question({
+        question: decode(result.question),
+        correctAnswer: decode(result.correct_answer),
+        answers: shuffledAnswers,
+      });
+    }
 
     return new Question({
       question: decode(result.question),
       correctAnswer: decode(result.correct_answer),
-      answers: shuffledAnswers,
+      answers: decodedAnswers,
     });
   });
 
