@@ -1,3 +1,4 @@
+import { AllHtmlEntities } from 'html-entities';
 import { concat, shuffle } from 'lodash';
 import { Question } from 'sections/Main/models/Question';
 // import { questionsClient } from './QuestionsClient';
@@ -19,13 +20,17 @@ class QuestionsRepository {
 export const questionsRepository = new QuestionsRepository();
 
 const mapQuestions = (data: any): Question[] => {
+  const { decode } = AllHtmlEntities;
+
   const questions = data.map((result: any) => {
     const answers = concat(result.incorrect_answers, result.correct_answer);
 
-    const shuffledAnswers = shuffle(answers) || [];
+    const decodedAnswers = answers.map(answer => decode(answer));
+
+    const shuffledAnswers = shuffle(decodedAnswers) || [];
 
     return new Question({
-      question: result.question,
+      question: decode(result.question),
       correctAnswer: result.correct_answer,
       answers: shuffledAnswers,
     });

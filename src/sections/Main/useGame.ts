@@ -35,7 +35,7 @@ export const useGame = () => {
     if (choice === answer) {
       setCurrentQuestionId(currentQuestionId + 1);
 
-      setMessage('correct');
+      setMessage('');
       return;
     }
 
