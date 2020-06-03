@@ -31,7 +31,7 @@ const mapQuestions = (data: any): Question[] => {
 
     return new Question({
       question: decode(result.question),
-      correctAnswer: result.correct_answer,
+      correctAnswer: decode(result.correct_answer),
       answers: shuffledAnswers,
     });
   });
