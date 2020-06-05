@@ -21,7 +21,7 @@ export const useGame = () => {
     }
   }, [currentQuestionId, questions]);
 
-  const startGame = async () => {
+  const init = async () => {
     const questions = await questionsRepository.get();
 
     setQuestions(questions);
@@ -29,11 +29,15 @@ export const useGame = () => {
     setGameIsOn(true);
   };
 
+  const advanceQuestion = () => {
+    setCurrentQuestionId(currentQuestionId + 1);
+  };
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const choice = e.currentTarget.textContent;
 
     if (choice === answer) {
-      setCurrentQuestionId(currentQuestionId + 1);
+      advanceQuestion();
 
       setMessage('');
       return;
@@ -45,9 +49,14 @@ export const useGame = () => {
   return {
     gameIsOn,
     currentQuestionId,
-    startGame,
+    init,
     handleClick,
     questions,
     message,
+    advanceQuestion,
   };
 };
+
+// maybe make the Game class and this hook can refer to that class
+
+//  if the game class can be made, all game logic can be here in this hook.  that would separate the game object from the game logic

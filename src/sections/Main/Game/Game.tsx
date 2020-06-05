@@ -5,14 +5,14 @@ import { Question } from 'sections/Main/Game/sections/Question';
 import { useGame } from 'sections/Main/useGame';
 
 export const Game: React.FC = () => {
-  const { currentQuestionId, handleClick, gameIsOn, startGame, questions, message } = useGame();
+  const { currentQuestionId, handleClick, gameIsOn, init, questions, message } = useGame();
 
   const currentQuestion = questions[currentQuestionId];
 
   if (!gameIsOn) {
     return (
       <div className="game start-page">
-        <Button onClick={startGame}>Start Game</Button>
+        <Button onClick={init}>Start Game</Button>
       </div>
     );
   }
