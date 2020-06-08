@@ -5,9 +5,7 @@ import { Question } from 'sections/Main/Game/sections/Question';
 import { useGame } from 'sections/Main/useGame';
 
 export const Game: React.FC = () => {
-  const { currentQuestionId, handleClick, gameIsOn, init, questions, message } = useGame();
-
-  const currentQuestion = questions[currentQuestionId];
+  const { handleClick, gameIsOn, init, question, message } = useGame();
 
   if (!gameIsOn) {
     return (
@@ -20,13 +18,13 @@ export const Game: React.FC = () => {
   return (
     <div className="game">
       <div className="question-wrapper">
-        <Question question={currentQuestion.question} />
+        <Question question={question.question} />
       </div>
       <div className="message-wrapper">
         <Message message={message} />
       </div>
       <div className="answer-wrapper">
-        <Answers answers={currentQuestion.answers} handleClick={handleClick} />
+        <Answers answers={question.answers} handleClick={handleClick} />
       </div>
     </div>
   );

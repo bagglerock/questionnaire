@@ -1,43 +1,42 @@
 import { find } from 'lodash';
 import { useEffect, useState } from 'react';
-import { Question } from 'sections/Main/models/Question';
-import { questionsRepository } from 'services/QuestionRepository';
+import { Game } from './models/Game';
+
+const INITIALIZATION_ERROR = 'Problem resetting game.';
 
 export const useGame = () => {
-  const [questions, setQuestions] = useState([new Question()]);
   const [gameIsOn, setGameIsOn] = useState(false);
-  const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const [message, setMessage] = useState('');
 
-  const { answers, correctAnswer } = questions[currentQuestionId];
+  const game = Game.getInstance();
 
-  const answer = find(answers, (a: any) => a === correctAnswer); // not sure if this catches a bad value
+  const question = game.getQuestion();
 
   useEffect(() => {
-    if (currentQuestionId === questions.length - 1) {
+    if (game.getQuestionsPosition() > game.getQuestionsCount()) {
       setGameIsOn(false);
 
       return;
     }
-  }, [currentQuestionId, questions]);
+  }, [game]);
 
   const init = async () => {
-    const questions = await questionsRepository.get();
+    try {
+      await game.initialize();
 
-    setQuestions(questions);
-    setCurrentQuestionId(0);
-    setGameIsOn(true);
-  };
-
-  const advanceQuestion = () => {
-    setCurrentQuestionId(currentQuestionId + 1);
+      setGameIsOn(true);
+    } catch (e) {
+      setMessage(INITIALIZATION_ERROR);
+    }
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const choice = e.currentTarget.textContent;
 
+    const answer = find(question.answers, (a: any) => a === question.correctAnswer);
+
     if (choice === answer) {
-      advanceQuestion();
+      game.advanceQuestion();
 
       setMessage('');
       return;
@@ -48,12 +47,10 @@ export const useGame = () => {
 
   return {
     gameIsOn,
-    currentQuestionId,
     init,
     handleClick,
-    questions,
     message,
-    advanceQuestion,
+    question,
   };
 };
 
