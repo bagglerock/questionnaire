@@ -1,6 +1,6 @@
 import { find } from 'lodash';
 import { useState } from 'react';
-import { Game } from './models/Game';
+import { Game } from 'sections/Main/models/Game';
 
 const INITIALIZATION_ERROR = 'Problem resetting game.';
 
@@ -11,6 +11,8 @@ export const useGame = () => {
   const game = Game.getInstance();
 
   const question = game.getQuestion();
+
+  const questionPosition = game.getQuestionsPosition();
 
   const init = async () => {
     try {
@@ -43,7 +45,7 @@ export const useGame = () => {
   };
 
   const advanceQuestion = () => {
-    if (game.getQuestionsPosition() === game.getQuestionsCount() - 1) {
+    if (questionPosition === game.getQuestionsCount() - 1) {
       setGameIsOn(false);
 
       return;
@@ -59,5 +61,6 @@ export const useGame = () => {
     message,
     question,
     advanceQuestion,
+    questionPosition,
   };
 };

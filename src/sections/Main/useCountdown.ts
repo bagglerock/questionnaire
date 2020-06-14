@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Question } from './models/Question';
 
-const QUESTION_TIMER = 5;
+const QUESTION_TIMER = 10;
 
-export const useCountdown = (cb: () => void, question: Question) => {
+export const useCountdown = (cb: () => void, questionPosition: number) => {
   const [countdown, setCountdown] = useState(QUESTION_TIMER);
 
   const restartTimer = () => {
@@ -28,7 +27,7 @@ export const useCountdown = (cb: () => void, question: Question) => {
 
   useEffect(() => {
     restartTimer();
-  }, [question]);
+  }, [questionPosition]);
 
   return {
     countdown,
