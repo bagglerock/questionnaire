@@ -1,5 +1,5 @@
+import { Question } from 'sections/Main/models/Question';
 import { questionsRepository } from 'services/QuestionRepository';
-import { Question } from './Question';
 
 export class Game {
   private static instance: Game;
