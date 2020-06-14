@@ -26,10 +26,6 @@ export class Game {
     await this.fetchQuestions();
   }
 
-  getQuestions() {
-    return;
-  }
-
   advanceQuestion(): void {
     this.questionPosition++;
   }

@@ -1,5 +1,5 @@
 import { find } from 'lodash';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Game } from './models/Game';
 
 const INITIALIZATION_ERROR = 'Problem resetting game.';
@@ -11,14 +11,6 @@ export const useGame = () => {
   const game = Game.getInstance();
 
   const question = game.getQuestion();
-
-  useEffect(() => {
-    if (game.getQuestionsPosition() > game.getQuestionsCount()) {
-      setGameIsOn(false);
-
-      return;
-    }
-  }, [game]);
 
   const init = async () => {
     try {
@@ -35,14 +27,27 @@ export const useGame = () => {
 
     const answer = find(question.answers, (a: any) => a === question.correctAnswer);
 
-    if (choice === answer) {
-      game.advanceQuestion();
+    if (choice !== answer) {
+      setMessage('that is incorrect');
 
-      setMessage('');
       return;
     }
 
-    setMessage('that is incorrect');
+    advanceQuestion();
+
+    setMessage('');
+  };
+
+  const advanceQuestion = () => {
+    const { getQuestionsPosition, getQuestionsCount } = game;
+
+    if (getQuestionsPosition() === getQuestionsCount() - 1) {
+      setGameIsOn(false);
+
+      return;
+    }
+
+    game.advanceQuestion();
   };
 
   return {
@@ -51,9 +56,6 @@ export const useGame = () => {
     handleClick,
     message,
     question,
+    advanceQuestion,
   };
 };
-
-// maybe make the Game class and this hook can refer to that class
-
-//  if the game class can be made, all game logic can be here in this hook.  that would separate the game object from the game logic
