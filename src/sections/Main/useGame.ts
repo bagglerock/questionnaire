@@ -39,9 +39,7 @@ export const useGame = () => {
   };
 
   const advanceQuestion = () => {
-    const { getQuestionsPosition, getQuestionsCount } = game;
-
-    if (getQuestionsPosition() === getQuestionsCount() - 1) {
+    if (game.getQuestionsPosition() === game.getQuestionsCount() - 1) {
       setGameIsOn(false);
 
       return;
