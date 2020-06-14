@@ -8,7 +8,7 @@ import { useCountdown } from '../useCountdown';
 export const Game: React.FC = () => {
   const { handleClick, gameIsOn, init, question, message, advanceQuestion } = useGame();
 
-  const { restartTimer } = useCountdown(advanceQuestion, question);
+  const { countdown } = useCountdown(advanceQuestion, question);
 
   if (!gameIsOn) {
     return (
@@ -24,6 +24,9 @@ export const Game: React.FC = () => {
         <Question question={question.question} />
       </div>
       <div className="message-wrapper">
+        <CountdownTimer countdown={countdown} />
+      </div>
+      <div className="message-wrapper">
         <Message message={message} />
       </div>
       <div className="answer-wrapper">
@@ -36,5 +39,11 @@ export const Game: React.FC = () => {
 const Message: React.FC<{ message: string }> = ({ message }) => (
   <>
     <h3>{message}</h3>
+  </>
+);
+
+const CountdownTimer: React.FC<{ countdown: number }> = ({ countdown }) => (
+  <>
+    <h3>{countdown}</h3>
   </>
 );

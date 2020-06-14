@@ -31,6 +31,6 @@ export const useCountdown = (cb: () => void, question: Question) => {
   }, [question]);
 
   return {
-    restartTimer,
+    countdown,
   };
 };
