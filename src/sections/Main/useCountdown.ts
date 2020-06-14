@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
+import { Question } from './models/Question';
 
-const QUESTION_TIMER = 3;
+const QUESTION_TIMER = 5;
 
-export const useCountdown = (cb: () => void) => {
+export const useCountdown = (cb: () => void, question: Question) => {
   const [countdown, setCountdown] = useState(QUESTION_TIMER);
+
+  const restartTimer = () => {
+    setCountdown(QUESTION_TIMER);
+  };
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -15,9 +20,17 @@ export const useCountdown = (cb: () => void) => {
     if (countdown === 0) {
       cb();
 
-      setCountdown(QUESTION_TIMER);
+      restartTimer();
     }
 
     return () => clearInterval(interval);
   }, [countdown, cb]);
+
+  useEffect(() => {
+    restartTimer();
+  }, [question]);
+
+  return {
+    restartTimer,
+  };
 };
