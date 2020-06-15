@@ -54,10 +54,6 @@ export const useGame = () => {
     }
   };
 
-  const clearMessage = () => {
-    setMessage('');
-  };
-
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const choice = e.currentTarget.textContent;
 
@@ -72,7 +68,7 @@ export const useGame = () => {
     }
 
     advanceQuestion();
-    clearMessage();
+    setMessage('');
   };
 
   return {
