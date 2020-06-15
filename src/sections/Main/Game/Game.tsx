@@ -2,13 +2,10 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Answers } from 'sections/Main/Game/sections/Answers';
 import { Question } from 'sections/Main/Game/sections/Question';
-import { useCountdown } from 'sections/Main/useCountdown';
 import { useGame } from 'sections/Main/useGame';
 
 export const Game: React.FC = () => {
-  const { handleClick, gameIsOn, init, question, message, advanceQuestion, questionPosition } = useGame();
-
-  const { countdown } = useCountdown(advanceQuestion, questionPosition);
+  const { handleClick, gameIsOn, init, question, message, countdown } = useGame();
 
   if (!gameIsOn) {
     return (
