@@ -39,8 +39,4 @@ const Message: React.FC<{ message: string }> = ({ message }) => (
   </>
 );
 
-const CountdownTimer: React.FC<{ countdown: number }> = ({ countdown }) => (
-  <>
-    <h3>{countdown}</h3>
-  </>
-);
+const CountdownTimer: React.FC<{ countdown: number | null }> = ({ countdown }) => <>{countdown ? <h3>{countdown}</h3> : ''}</>;

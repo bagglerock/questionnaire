@@ -9,7 +9,7 @@ const QUESTION_TIMER = 10;
 export const useGame = () => {
   const [gameIsOn, setGameIsOn] = useState(false);
   const [message, setMessage] = useState('');
-  const [countdown, setCountdown] = useState(QUESTION_TIMER);
+  const [countdown, setCountdown] = useState<number | null>(QUESTION_TIMER);
 
   const game = Game.getInstance();
 
@@ -27,15 +27,36 @@ export const useGame = () => {
   }, [game]);
 
   useEffect(() => {
+    const showAnswer = () => {
+      const answer = game.getQuestion().correctAnswer;
+
+      setMessage('The answer is: ' + answer);
+
+      setTimeout(() => {
+        advanceQuestion();
+        setMessage('');
+      }, 5000);
+    };
+
     let interval: NodeJS.Timeout;
 
     if (gameIsOn) {
       interval = setInterval(() => {
-        setCountdown(countdown => countdown - 1);
+        setCountdown(countdown => {
+          if (countdown != null) {
+            return countdown - 1;
+          }
+
+          return null;
+        });
       }, 1000);
 
       if (countdown === 0) {
-        advanceQuestion();
+        clearInterval(interval);
+
+        setCountdown(null);
+
+        showAnswer();
       }
     }
 
