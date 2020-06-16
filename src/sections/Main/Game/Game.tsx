@@ -5,7 +5,7 @@ import { Question } from 'sections/Main/Game/sections/Question';
 import { useGame } from 'sections/Main/useGame';
 
 export const Game: React.FC = () => {
-  const { handleClick, gameIsOn, init, question, message, countdown } = useGame();
+  const { handleClick, gameIsOn, init, question, message, countdown, disableAnswers } = useGame();
 
   if (!gameIsOn) {
     return (
@@ -27,7 +27,7 @@ export const Game: React.FC = () => {
         <Message message={message} />
       </div>
       <div className="answer-wrapper">
-        <Answers answers={question.answers} handleClick={handleClick} />
+        <Answers answers={question.answers} handleClick={handleClick} disableAnswers={disableAnswers} />
       </div>
     </div>
   );

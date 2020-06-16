@@ -10,6 +10,7 @@ export const useGame = () => {
   const [gameIsOn, setGameIsOn] = useState(false);
   const [message, setMessage] = useState('');
   const [countdown, setCountdown] = useState<number | null>(QUESTION_TIMER);
+  const [disableAnswers, setDisableAnswers] = useState(false);
 
   const game = Game.getInstance();
 
@@ -23,6 +24,7 @@ export const useGame = () => {
     }
 
     game.advanceQuestion();
+    setDisableAnswers(false);
     setCountdown(QUESTION_TIMER);
   }, [game]);
 
@@ -31,6 +33,7 @@ export const useGame = () => {
       const answer = game.getQuestion().correctAnswer;
 
       setMessage('The answer is: ' + answer);
+      setDisableAnswers(true);
 
       setTimeout(() => {
         advanceQuestion();
@@ -100,5 +103,6 @@ export const useGame = () => {
     question: game.getQuestion(),
     advanceQuestion,
     countdown,
+    disableAnswers,
   };
 };
