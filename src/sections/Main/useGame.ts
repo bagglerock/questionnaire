@@ -11,6 +11,7 @@ export const useGame = () => {
   const [message, setMessage] = useState('');
   const [countdown, setCountdown] = useState<number | null>(QUESTION_TIMER);
   const [disableAnswers, setDisableAnswers] = useState(false);
+  const [score, setScore] = useState(0);
 
   const game = Game.getInstance();
 
@@ -72,6 +73,7 @@ export const useGame = () => {
 
       setGameIsOn(true);
 
+      setScore(0);
       setCountdown(QUESTION_TIMER);
     } catch (e) {
       setMessage(INITIALIZATION_ERROR);
@@ -91,6 +93,7 @@ export const useGame = () => {
       return;
     }
 
+    setScore(score + (countdown || 0));
     advanceQuestion();
     setMessage('');
   };
@@ -104,5 +107,6 @@ export const useGame = () => {
     advanceQuestion,
     countdown,
     disableAnswers,
+    score,
   };
 };

@@ -5,12 +5,13 @@ import { Question } from 'sections/Main/Game/sections/Question';
 import { useGame } from 'sections/Main/useGame';
 
 export const Game: React.FC = () => {
-  const { handleClick, gameIsOn, init, question, message, countdown, disableAnswers } = useGame();
+  const { handleClick, gameIsOn, init, question, message, countdown, disableAnswers, score } = useGame();
 
   if (!gameIsOn) {
     return (
       <div className="game start-page">
         <Button onClick={init}>Start Game</Button>
+        <h2 className="mt-5">Your last score was: {score}</h2>
       </div>
     );
   }
